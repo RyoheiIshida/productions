@@ -13,7 +13,7 @@ echo $num3 . "\n";
 echo $num3++ . "\n";
 echo $num3 . "\n";
 
-$num3 = 0;
-echo $num3 . "\n";
-echo ++$num3 . "\n";
-echo $num3 . "\n";
+$num3_1 = 0;
+echo $num3_1 . "\n";
+echo ++$num3_1 . "\n";
+echo $num3_1 . "\n";
