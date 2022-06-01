@@ -1,14 +1,30 @@
 <?php
-$arr[0]["info"] = ["name" => "田中", "division" => "1", "age" => "25"];
-$arr[0]["skill"] = ["lang" => ["PHP", "Ruby"], "fw" => ["Laravel", "CakePHP", "Rails"]];
-$arr[0]["description"] = "バックエンドエンジニア";
+$arr=array();
 
-$arr[1]["info"] = ["name" => "山田", "division" => "2", "age" => "23"];
-$arr[1]["slill"] = ["lang" => ["HTML", "CSS", "JS"], "fw" => ["Vue.js"]];
-$arr[1]["description"] = "フロントエンドエンジニア";
+#一人目
+$Tanaka["info"]=array_merge(array("name"=>"田中","division"=>"1","age"=>"25"));
+$Tanaka["skill"]["lang"]=array();
+array_push($Tanaka["skill"]["lang"],"PHP","Ruby");
+$Tanaka["skill"]["fw"]=array();
+array_push($Tanaka["skill"]["fw"],"Laravel","CakePHP","Rails");
+$Tanaka["description"]="バックエンドエンジニア";
+array_push($arr,$Tanaka);
 
-$arr[2]["info"] = ["name" => "佐藤", "division" => "2", "age" => "20"];
-$arr[2]["slill"] = ["lang" => ["PHP"], "fw" => []];
-$arr[2]["description"] = "PHP初学者";
+#二人目
+$Yamada["info"]=array_merge(array("name"=>"山田","division"=>"2","age"=>"23"));
+$Yamada["skill"]["lang"]=array();
+array_push($Yamada["skill"]["lang"],"HTML","CSS","JS");
+$Yamada["skill"]["fw"]=array();
+array_push($Yamada["skill"]["fw"],"Vue.js");
+$Yamada["description"]="フロントエンジニア";
+array_push($arr,$Yamada);
+
+#三人目
+$Satou["info"]=array_merge(array("name"=>"佐藤","division"=>"2","age"=>"20"));
+$Satou["skill"]["lang"]=array();
+array_push($Satou["skill"]["lang"],"PHP");
+$Satou["skill"]["fw"]=array();
+$Satou["description"]="PHP初学者";
+array_push($arr,$Satou);
 
 var_dump($arr);
