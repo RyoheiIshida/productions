@@ -1,17 +1,21 @@
 <?php
-#課題1
-function tax($v = null){
-    if ($v == null) {
+/*
+@info To make tax-included price from non-included price.
+@param int $value non-taxed price.
+@return int tax-included price.
+*/
+function tax($value = null){
+    if ($value == null) {
         return "引数を入力してください\n";
-    } elseif (!is_int($v)) {
+    } elseif (!is_int($value)) {
         return "引数には数値を入力してください。\n";
     }
-    return floor($v + $v * 10 / 100);
+    return floor($value + $value * 10 / 100);
 }
 
 for ($i = 1; $i <= 10; $i++) {
     $r = rand(100, 1000);
-    echo $r . " " . tax($r, 5);
+    echo $r . " " . tax($r);
     echo "\n";
 }
 
