@@ -15,15 +15,16 @@ foreach ($emp as $emp_k => $emp_v) {
     printf("name:%s\nage:%s\npref:%s\n\n", $emp_k, $emp_v["age"], $emp_v["pref"]);
 }
 
-$arr = [];
+$arr_of_three = [];
 for ($i = 1; $i <= 50; $i++) {
     if ($i % 3 == 0 || strstr((string)$i, "3")) {
-        array_push($arr, $i);
+        array_push($arr_of_three, $i);
     }
 }
-var_dump($arr);
+var_dump($arr_of_three);
 
-foreach ($emp as $empk => $empv) {
-    $name_pref[] = ["name" => $empk, "pref" => $empv["pref"]];
+$name_pref=[];
+foreach ($emp as $emp_k => $emp_v) {
+    $name_pref[] = ["name" => $emp_k, "pref" => $emp_v["pref"]];
 }
 var_dump($name_pref);
