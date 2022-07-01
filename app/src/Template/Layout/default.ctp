@@ -44,6 +44,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <ul class="right">
                 <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
                 <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
+
+                <?php if(empty($user)): ?>
+                    <li><a href="/users/login">LOGIN</a></li>
+                    
+                <?php elseif(!empty($user)): ?>
+                    <li><a href="/users/logout">LOGOUT</a></li>
+                    <li>ログイン中のユーザー：<?php echo$user['email']." ".$user['authority'] ?></li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
