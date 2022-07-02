@@ -8,10 +8,9 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $name
- * @property int $stock_quantity
- * @property int $order_quantity
- * @property int $price
- * @property string $status
+ * @property int|null $num
+ * @property int|null $price
+ * @property string|null $status
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  */
@@ -28,8 +27,7 @@ class Stock extends Entity
      */
     protected $_accessible = [
         'name' => true,
-        'stock_quantity' => true,
-        'order_quantity' => true,
+        'num' => true,
         'price' => true,
         'status' => true,
         'created' => true,

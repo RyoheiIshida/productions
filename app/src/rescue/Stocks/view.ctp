@@ -29,12 +29,8 @@
             <td><?= $this->Number->format($stock->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Stock Quantity') ?></th>
-            <td><?= $this->Number->format($stock->stock_quantity) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Order Quantity') ?></th>
-            <td><?= $this->Number->format($stock->order_quantity) ?></td>
+            <th scope="row"><?= __('Num') ?></th>
+            <td><?= $this->Number->format($stock->num) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Price') ?></th>

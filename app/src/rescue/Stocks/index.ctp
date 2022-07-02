@@ -17,8 +17,7 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('stock_quantity') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('order_quantity') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('num') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('price') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('status') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
@@ -31,8 +30,7 @@
             <tr>
                 <td><?= $this->Number->format($stock->id) ?></td>
                 <td><?= h($stock->name) ?></td>
-                <td><?= $this->Number->format($stock->stock_quantity) ?></td>
-                <td><?= $this->Number->format($stock->order_quantity) ?></td>
+                <td><?= $this->Number->format($stock->num) ?></td>
                 <td><?= $this->Number->format($stock->price) ?></td>
                 <td><?= h($stock->status) ?></td>
                 <td><?= h($stock->created) ?></td>

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Stock $stock
@@ -16,19 +15,14 @@
     <fieldset>
         <legend><?= __('Add Stock') ?></legend>
         <?php
-        echo $this->Form->control('name');
-        echo $this->Form->control('stock_quantity');
-        echo $this->Form->control('order_quantity');
-        echo $this->Form->control('price');
-        echo $this->Form->control(
-            'status',
-            [
-                ['text' => '発注確認', 'value' => '発注確認'],
-                ['text' => '発注状態', 'value' => '発注状態'],
-                ['text' => '発注済み', 'value' => '発注済み'],
-                ['text' => '発注受け取り済み', 'value' => '発注受け取り済み']
-            ]
-        );
+            echo $this->Form->control('name');
+            echo $this->Form->control('num');
+            echo $this->Form->control('price');
+            echo $this->Form->radio('status',
+        [['text'=>'発注確認','value'=>'発注確認'],
+        ['text'=>'発注状態','value'=>'発注状態'],
+        ['text'=>'発注済み','value'=>'発注済み'],
+        ['text'=>'発注受け取り済み','value'=>'発注受け取り済み']]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

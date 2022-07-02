@@ -1,21 +1,19 @@
 <?php
 namespace App\Model\Entity;
-
+use Cake\Auth\DefaultPasswordHasher; 
 use Cake\ORM\Entity;
 
 /**
- * Stock Entity
+ * User Entity
  *
  * @property int $id
- * @property string $name
- * @property int $stock_quantity
- * @property int $order_quantity
- * @property int $price
- * @property string $status
+ * @property string $email
+ * @property string $password
+ * @property string $authority
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  */
-class Stock extends Entity
+class User extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -27,12 +25,28 @@ class Stock extends Entity
      * @var array
      */
     protected $_accessible = [
-        'name' => true,
-        'stock_quantity' => true,
-        'order_quantity' => true,
-        'price' => true,
-        'status' => true,
+        'email' => true,
+        'password' => true,
+        'authority' => true,
         'created' => true,
         'modified' => true,
     ];
+
+    /**
+     * Fields that are excluded from JSON versions of the entity.
+     *
+     * @var array
+     */
+    protected $_hidden = [
+        'password',
+    ];
+    protected function _setPassword($value)
+    {
+        if (strlen($value)) {
+            $hasher = new DefaultPasswordHasher();
+
+            return $hasher->hash($value);
+        }
+    }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Stock $stock
@@ -12,7 +13,7 @@
                 ['action' => 'delete', $stock->id],
                 ['confirm' => __('Are you sure you want to delete # {0}?', $stock->id)]
             )
-        ?></li>
+            ?></li>
         <li><?= $this->Html->link(__('List Stocks'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
@@ -21,14 +22,24 @@
     <fieldset>
         <legend><?= __('Edit Stock') ?></legend>
         <?php
-            echo $this->Form->control('name');
-            echo $this->Form->control('num');
-            echo $this->Form->control('price');
-            echo $this->Form->radio('status',
-            [['text'=>'発注確認','value'=>'発注確認'],
-            ['text'=>'発注状態','value'=>'発注状態'],
-            ['text'=>'発注済み','value'=>'発注済み'],
-            ['text'=>'発注受け取り済み','value'=>'発注受け取り済み']]);
+        echo $this->Form->label('名称');
+        echo $this->Form->select('name', [$stock['name']], ['disabled' => true]);
+        echo $this->Form->label('在庫数');
+        echo $this->Form->select('stock_quantity', [$stock['stock_quantity']], ['disabled' => true]);
+        echo $this->Form->control('order_quantity');
+        echo $this->Form->label('価格');
+        echo $this->Form->select('price', [$stock['price']], ['disabled' => true]);
+        echo $this->Form->label('ステータス');
+        echo $this->Form->select(
+            'status',
+            [
+                '発注受け取り済み' => '発注受け取り済み',
+                '発注確認' => '発注確認',
+                '発注状態' => '発注状態',
+                '発注済み' => '発注済み',
+            ],
+            ['disabled' => true]
+        )
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

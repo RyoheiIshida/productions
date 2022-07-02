@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
@@ -15,14 +16,17 @@
     <fieldset>
         <legend><?= __('Add User') ?></legend>
         <?php
-            echo $this->Form->control('email');
-            echo $this->Form->control('password');
-            echo $this->Form->radio('authority',
-        [
-            ['text'=>'在庫発注管理者','value'=>'在庫発注管理者'],
-        ['text'=>'在庫発注社員','value'=>'在庫発注社員'],
-        ['text'=>'在庫受注社員','value'=>'在庫受注社員']
-        ]
+        echo $this->Form->control('email');
+        echo $this->Form->control('password');
+
+        #echo $this->Form->radio('authority', ['在庫発注管理者', '在庫発注社員', '在庫受注社員']);
+        echo $this->Form->radio(
+            'authority',
+            [
+                ['text' => '在庫発注管理者', 'value' => '在庫発注管理者'],
+                ['text' => '在庫発注社員', 'value' => '在庫発注社員'],
+                ['text' => '在庫受注社員', 'value' => '在庫受注社員']
+            ]
         );
         ?>
     </fieldset>

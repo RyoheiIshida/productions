@@ -21,8 +21,8 @@ class UsersController extends AppController
     public function index()
     {
         $users = $this->paginate($this->Users);
-        $login_user=$this->Auth->user();
-        $this->set(compact('users','login_user'));
+
+        $this->set(compact('users'));
     }
 
     /**
@@ -37,8 +37,8 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => [],
         ]);
-        $login_user = $this->Auth->user();
-        $this->set(compact('user', 'login_user'));
+
+        $this->set('user', $user);
     }
 
     /**
@@ -58,8 +58,7 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $login_user = $this->Auth->user();
-        $this->set(compact('user','login_user'));
+        $this->set(compact('user'));
     }
 
     /**
@@ -83,8 +82,7 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $login_user = $this->Auth->user();
-        $this->set(compact('user','login_user'));
+        $this->set(compact('user'));
     }
 
     /**
@@ -106,23 +104,21 @@ class UsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-
     public function login()
     {
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+                return $this->redirect($this->Auth->redirectUrl('/stocks/index'));
             }
             $this->Flash->error('ユーザー名またはパスワードが不正です。');
         }
     }
-
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['logout', 'add']);
+        $this->Auth->allow(['logout','add']);
     }
 
     public function logout()
