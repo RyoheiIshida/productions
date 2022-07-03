@@ -20,7 +20,7 @@ class StocksFixture extends TestFixture
         'stock_quantity' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'order_quantity' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'price' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'status' => ['type' => 'string', 'length' => 8, 'fixed' => true, 'null' => false, 'default' => '発注受け取り済み', 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null],
+        'status' => ['type' => 'string', 'length' => 8, 'fixed' => true, 'null' => false, 'default' => '初期ステータス', 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => 'CURRENT_TIMESTAMP', 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => 'CURRENT_TIMESTAMP', 'comment' => '', 'precision' => null],
         '_constraints' => [
@@ -47,8 +47,8 @@ class StocksFixture extends TestFixture
                 'order_quantity' => 1,
                 'price' => 1,
                 'status' => 'Lorem ',
-                'created' => '2022-07-01 07:08:30',
-                'modified' => '2022-07-01 07:08:30',
+                'created' => '2022-07-03 17:05:30',
+                'modified' => '2022-07-03 17:05:30',
             ],
         ];
         parent::init();
