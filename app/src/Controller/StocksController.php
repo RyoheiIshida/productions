@@ -81,7 +81,7 @@ class StocksController extends AppController
             $authority = $this->Auth->user('authority');
 
             #ユーザーの権限ごとに処理を分類
-            if ($authority === '在庫発注社員' and $stock['status'] === '発注受け取り済み') {
+            if ($authority === '在庫発注社員' and ($stock['status'] === '発注受け取り済み' or $stock['status'] === '初期ステータス')) {
                 $stock['status'] = '発注確認';
             } elseif ($authority === '在庫発注管理者' and $stock['status'] === '発注確認') {
                 $stock['status'] = '発注状態';
@@ -144,7 +144,7 @@ class StocksController extends AppController
         $authority = $this->Auth->user([('authority')]);
         $status = $this->Stocks->get($this->request->getParam('pass.0'))['status'];
 
-        if ($authority === '在庫発注社員' and $status === '発注受け取り済み') {
+        if ($authority === '在庫発注社員' and ($status === '発注受け取り済み' or $status === '初期ステータス')) {
             return true;
         } elseif ($authority === '在庫発注管理者' and $status === '発注確認') {
             return true;

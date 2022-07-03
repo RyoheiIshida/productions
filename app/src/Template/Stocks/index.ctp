@@ -6,8 +6,8 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Stock'), ['action' => 'add']) ?></li>
+        <li class="heading"><?= __('編集メニュー') ?></li>
+        <li><?= $this->Html->link(__('新規商品'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="stocks index large-9 medium-8 columns content">
@@ -16,14 +16,12 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('stock_quantity') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('order_quantity') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('price') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('status') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('名称') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('在庫数') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('発注数') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('価格') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('ステータス') ?></th>
+                <th scope="col" class="actions"><?= __('編集メニュー') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -35,12 +33,10 @@
                 <td><?= $this->Number->format($stock->order_quantity) ?></td>
                 <td><?= $this->Number->format($stock->price) ?></td>
                 <td><?= h($stock->status) ?></td>
-                <td><?= h($stock->created) ?></td>
-                <td><?= h($stock->modified) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $stock->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $stock->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $stock->id], ['confirm' => __('Are you sure you want to delete # {0}?', $stock->id)]) ?>
+                    <?= $this->Html->link(__('閲覧'), ['action' => 'view', $stock->id]) ?>
+                    <?= $this->Html->link(__('編集'), ['action' => 'edit', $stock->id]) ?>
+                    <?= $this->Form->postLink(__('削除'), ['action' => 'delete', $stock->id], ['confirm' => __('Are you sure you want to delete # {0}?', $stock->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -48,11 +44,11 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('最初へ')) ?>
+            <?= $this->Paginator->prev('< ' . __('前へ')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('次へ') . ' >') ?>
+            <?= $this->Paginator->last(__('最後へ') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>

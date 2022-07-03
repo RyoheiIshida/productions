@@ -7,30 +7,22 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Stocks'), ['action' => 'index']) ?></li>
+        <li class="heading"><?= __('編集メニュー') ?></li>
+        <li><?= $this->Html->link(__('商品一覧'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="stocks form large-9 medium-8 columns content">
     <?= $this->Form->create($stock) ?>
     <fieldset>
-        <legend><?= __('Add Stock') ?></legend>
+        <legend><?= __('新規商品') ?></legend>
         <?php
-        echo $this->Form->control('name');
-        echo $this->Form->control('stock_quantity');
-        echo $this->Form->control('order_quantity');
-        echo $this->Form->control('price');
-        echo $this->Form->control(
-            'status',
-            [
-                ['text' => '発注確認', 'value' => '発注確認'],
-                ['text' => '発注状態', 'value' => '発注状態'],
-                ['text' => '発注済み', 'value' => '発注済み'],
-                ['text' => '発注受け取り済み', 'value' => '発注受け取り済み']
-            ]
-        );
+        echo $this->Form->control('name',['label'=>['text'=>'名称']]);
+        echo $this->Form->control('stock_quantity',['label'=>['text'=>'在庫数']]);
+        echo $this->Form->control('order_quantity',['label'=>['text'=>'発注数']]);
+        echo $this->Form->control('price',['label'=>['text'=>'価格']]);
+        echo $this->Form->control('status',['label'=>['text'=>'ステータス'],'default'=>'初期ステータス','disabled'=>true]);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('送信')) ?>
     <?= $this->Form->end() ?>
 </div>
