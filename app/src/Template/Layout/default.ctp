@@ -45,6 +45,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
                 <?php if(empty($login_user['email'])): ?>
                     <li><a href="/users/login">ログイン</a></li>
+                    <li><a href="/users/add">ユーザー登録</a></li>
                 <?php elseif(!empty($login_user['email'])): ?>
                     <li><a href="/users/logout">ログアウト</a></li>
                     <li>ログイン中のユーザー：<?php echo $login_user['email']." ".$login_user['authority'] ?></li>
