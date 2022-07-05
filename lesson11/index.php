@@ -1,5 +1,12 @@
 <?php
-$_GET["message"] = htmlspecialchars($_GET['message'], ENT_QUOTES, "UTF-8");
-$message = $_GET['message'];
-echo $message;
-print_r($_GET);
+
+/*
+* @info make htmlspecialchars string
+* @param string $str string from $_GET
+* @return string $str string throw htmlspecialchars
+*/
+function h($str){
+    return htmlspecialchars($str,ENT_QUOTES,"UTF-8");
+}
+
+echo h($_GET['message']);
