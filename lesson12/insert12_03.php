@@ -3,7 +3,7 @@ require_once __DIR__ . '/DbManager.php';
 $f = file_get_contents("sample.json", false, null, 0);
 $pref_data = json_decode($f, true)[0];
 
-$dbh = getDb('japan');
+$dbh = getDb();
 
 $large_area_arr = []; //各都道府県をエリア分けした配列 エリア内訳はネットから拝借→https://clip.zaigenkakuho.com/chiho_kubun/
 $large_area_arr["北海道地方"] = ["北海道"];
