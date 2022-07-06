@@ -1,6 +1,6 @@
 <?php
-function getDb($dbname):PDO{
-    $dsn = 'mysql:dbname='.$dbname.';host=localhost;port=3366';
+function getDb():PDO{
+    $dsn = 'mysql:dbname=mzn;host=mzn_db;port=3306';
     $user = 'user';
     $password = 'pass';
     try{
