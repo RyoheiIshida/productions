@@ -1,20 +1,34 @@
 <?php
-function getDb():PDO{
+
+/*
+* @info get new PDO object
+* @parameter nothing
+* @return PDO object
+*/
+function getDb(): PDO
+{
     $dsn = 'mysql:dbname=mzn;host=mzn_db;port=3306';
     $user = 'user';
     $password = 'pass';
-    try{
+    try {
         $dbh = new PDO($dsn, $user, $password);
-    }catch (PDOException $e){
-        print('Error:'.$e->getMessage());
+    } catch (PDOException $e) {
+        print('Error:' . $e->getMessage());
         die();
     }
-    return $dbh;   
+    return $dbh;
 }
 
-function sql_exec($dbh,$str):object{
-    $s=$dbh->prepare($str);
+/*
+* @info get new PDO, prepare, execute and fetchall
+* @parameter SQL statement
+* @return data by fetchall
+*/
+function sql_exec($str)
+{
+    $dbh = getDb();
+    $s = $dbh->prepare($str);
     $s->execute();
-
-    return $s;
+    $data = $s->fetchall();
+    return $data;
 }

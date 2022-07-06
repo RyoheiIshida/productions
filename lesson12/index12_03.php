@@ -7,15 +7,14 @@
 </head>
 
 <body>
-    <h1>地域の各都道府県リスト</h1>
+    <h1>課題12_03</h1>
+    <h2>地域の各都道府県リスト</h2>
     <table class='table'>
 
         <?php
         require_once __DIR__ . '/DbManager.php';
-        $dbh = getDb('japan');
-
-        $s = sql_exec($dbh, 'SELECT * FROM large_area');
-        while ($row = $s->fetch(PDO::FETCH_ASSOC)) {
+        $data = sql_exec('SELECT * FROM large_area');
+        foreach($data as $row) {
             echo "<tr>";
             echo "<td>" . $row['prefecture_id'] . "</td>";
             echo "<td>" . $row['name'] . "</td>";
@@ -25,13 +24,15 @@
         ?>
     </table>
 
-    <h1>市区町村の県別数</h1>
+    <h2>市区町村の県別数</h2>
     <table class='table'>
         <?php
-
-        $s = sql_exec($dbh, 'SELECT * FROM prefecture');
-        while ($row = $s->fetch(pdo::FETCH_ASSOC)) {
-            $stt_count = sql_exec($dbh, 'select count(*) from city where prefecture_id=' . $row["prefecture_id"]);
+        $dbh=getDb();
+        $stt=$dbh->prepare('SELECT * FROM prefecture');
+        $stt->execute();
+        while ($row = $stt->fetch(pdo::FETCH_ASSOC)) {
+            $stt_count = $dbh->prepare('select count(*) from city where prefecture_id=' . $row["prefecture_id"]);
+            $stt_count->execute();
             echo "<tr>";
             echo "<td>" . $row["prefecture_id"]."</td>";
             echo "<td>" . $row["name"]."</td>";
