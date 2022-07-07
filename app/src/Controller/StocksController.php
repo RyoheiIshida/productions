@@ -105,7 +105,6 @@ class StocksController extends AppController
         }
         $login_user = $this->Auth->user();
         $this->set(compact('stock', 'login_user'));
-
     }
 
     /**
@@ -127,11 +126,37 @@ class StocksController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    /**
+     * csvOutput method
+     * @info make csv file.
+     * @param nothing.
+     * @return nothing.
+     */
+    public function csvOutput()
+    {
+        date_default_timezone_set ('Asia/Tokyo'); 
+        $file = fopen(date('Y-m-d_Hi').'.csv', 'w');
+        if ($file) {
+            fputcsv($file, ['id', '名称', '在庫数', '発注数', '価格', 'ステータス', '作成日', '変更日']);
+            $data = $this->Stocks->find('all');
+            foreach ($data as $row) {
+                fputcsv($file, [$row['id'], $row['name'], $row['stock_quantity'], $row['order_quantity'], $row['price'], $row['status'], $row['created'], $row['modified']]);
+            }
+        }
+        if (fclose($file)) {
+            $this->Flash->success(__('csv output is success.'));
+        } else {
+            $this->Flash->error(__('csv output is fail.'));
+        }
+        return $this->redirect(['action' => 'index']);
+    }
+
     public function isAuthorized($user)
     {
         $action = $this->request->getParam('action');
         // add アクションは、常にログインしているユーザーに許可されます。
-        if (in_array($action, ['add'])) {
+        if (in_array($action, ['add', 'csvOutput'])) {
             return true;
         }
 
@@ -154,5 +179,4 @@ class StocksController extends AppController
             return true;
         }
     }
-
 }
