@@ -14,7 +14,7 @@ class PrefecturesTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->hasMany(
-            'Citys',
+            'Cities',
             [
                 'foreignKey' => 'prefecture_id', 'joinType' => 'INNER'
             ]

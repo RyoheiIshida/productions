@@ -21,7 +21,7 @@ class PrefecturesController extends AppController
     }
     public function view($slug = null)
     {
-        $prefectures = $this->Prefectures->get($slug, ['contain' => ['LargeAreas', 'Citys']]);
+        $prefectures = $this->Prefectures->get($slug, ['contain' => ['LargeAreas', 'Cities']]);
         #$prefectures = $this->Paginator->paginate($this->Prefectures->find($slug, ['contain' => ['LargeAreas', 'Citys']]));
         $this->set(compact('prefectures'));
     }

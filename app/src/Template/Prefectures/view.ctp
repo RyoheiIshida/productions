@@ -8,13 +8,13 @@
     </tr>
 
     <!-- ここで、$articles クエリーオブジェクトを繰り返して、記事の情報を出力します -->
-    <?php foreach ($prefectures->citys as $citys) : ?>
+    <?php foreach ($prefectures->cities as $cities) : ?>
         <tr>
             <td>
-                <?= h($citys->name) ?>
+                <?= h($cities->name) ?>
             </td>
             <td>
-                <?= h($citys->citycode) ?>
+                <?= h($cities->citycode) ?>
             </td>
         </tr>
     <?php endforeach; ?>

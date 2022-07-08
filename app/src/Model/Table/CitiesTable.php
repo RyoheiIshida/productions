@@ -4,11 +4,11 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 
-class CitysTable extends Table
+class CitiesTable extends Table
 {
     public function initialize(array $config)
     {
-        $this->settable('citys');
+        $this->settable('cities');
         $this->addBehavior('Timestamp');
     }
 }
