@@ -1,4 +1,4 @@
-<!-- File: src/Template/Articles/index.ctp -->
+<!-- File: src/Template/Prefectures/index.ctp -->
 
 <h1>都道府県一覧</h1>
 <table>
@@ -8,7 +8,7 @@
         <th>都道府県名</th>
     </tr>
 
-    <!-- ここで、$articles クエリーオブジェクトを繰り返して、記事の情報を出力します -->
+    <!-- ここで、$prefectures クエリーオブジェクトを繰り返して、記事の情報を出力します -->
 
     <?php foreach ($prefectures as $prefecture) : ?>
         <tr>
