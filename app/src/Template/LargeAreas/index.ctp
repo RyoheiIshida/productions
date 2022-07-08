@@ -1,4 +1,4 @@
-<!-- File: src/Template/Articles/index.ctp -->
+<!-- File: src/Template/LargeAreas/index.ctp -->
 
 <h1>都道府県一覧</h1>
 <table>
@@ -8,19 +8,19 @@
         <th>都道府県名</th>
     </tr>
 
-    <!-- ここで、$articles クエリーオブジェクトを繰り返して、記事の情報を出力します -->
+    <!-- ここで、$large_areas クエリーオブジェクトを繰り返して、記事の情報を出力します -->
 
     <?php foreach ($large_areas as $large_area) : ?>
         <tr>
-            <td>
-                <?= $large_area->name ?>
-            </td>
-
+            
             <td>
                 <?= $large_area->prefecture_id ?>
             </td>
             <td>
-                <?= $this->Html->link($large_area->prefecture_name, ['action' => 'view', $large_area->prefecture_id]) ?>
+                <?= $large_area->prefecture_name ?>
+            </td>
+            <td>
+                <?= $large_area->name ?>
             </td>
         </tr>
     <?php endforeach; ?>
