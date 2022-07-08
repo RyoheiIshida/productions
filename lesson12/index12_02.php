@@ -58,5 +58,15 @@
         }
 
         ?>
+    </table>
+    <?php
+    $dbh = null;
+    $row = null;
+    $s = null;
+    $user_annotation = null;
+    $user_annotations = null;
+    $data = null;
+    $i=null;
+    ?>
 
 </html>

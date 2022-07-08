@@ -41,5 +41,11 @@
         }
         ?>
     </table>
-
+<?php
+$dbh=null;
+$row=null;
+$stt=null;
+$stt_count=null;
+$data=null;
+?>
 </html>
