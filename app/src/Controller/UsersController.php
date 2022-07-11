@@ -109,6 +109,11 @@ class UsersController extends AppController
 
     public function login()
     {
+        $login_user=$this->Auth->user();
+        if ($login_user){
+            $this->Flash->error('すでにログイン済みです。');
+            return $this->redirect($this->Auth->redirectUrl());
+        }
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
