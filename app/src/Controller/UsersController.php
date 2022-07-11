@@ -123,11 +123,20 @@ class UsersController extends AppController
     {
         parent::initialize();
         $this->Auth->allow(['logout', 'add']);
+        $this->Auth->deny(['index']);
     }
 
     public function logout()
     {
         $this->Flash->success('ログアウトしました。');
         return $this->redirect($this->Auth->logout());
+    }
+
+    public function isAuthorized($user){
+        $action = $this->request->getParam('action');
+        if (in_array($action, ['index'])) {
+            return true;
+        }
+
     }
 }
