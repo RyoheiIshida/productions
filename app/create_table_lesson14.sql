@@ -35,22 +35,7 @@ create table orders(
 );
 
 -- 以下stocksのサンプルデータ
-insert into
-    stocks (name, price)
-values
-    ("りんご", 120);
-
-insert into
-    stocks (name, price)
-values
-    ("オレンジ", 110);
-
-insert into
-    stocks (name, price)
-values
-    ("ぶどう", 180);
-
-insert into
-    stocks (name, price)
-values
-    ("パイナップル", 200);
+insert into productions (name, price)values ("ブートジョロキア", 120);
+insert into productions (name, price)values ("チョコレートジョロキア", 150);
+insert into productions (name, price)values ("ハラペーニョ", 180);
+insert into productions (name, price)values ("ハバネロ", 200);
