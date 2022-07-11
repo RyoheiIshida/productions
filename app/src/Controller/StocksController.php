@@ -53,11 +53,11 @@ class StocksController extends AppController
         if ($this->request->is('post')) {
             $stock = $this->Stocks->patchEntity($stock, $this->request->getData());
             if ($this->Stocks->save($stock)) {
-                $this->Flash->success(__('The stock has been saved.'));
+                $this->Flash->success(__('在庫情報に保存されました。'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The stock could not be saved. Please, try again.'));
+            $this->Flash->error(__('在庫情報に保存されませんでした。もう一度試してください。'));
         }
         $login_user = $this->Auth->user();
         $this->set(compact('stock', 'login_user'));
@@ -92,16 +92,16 @@ class StocksController extends AppController
                 $stock['stock_quantity'] = $stock['stock_quantity'] + $stock['order_quantity'];
                 $stock['order_quantity'] = 0;
             } else {
-                return $this->Flash->error(__('The stock could not be saved. Please, try again.'));
+                return $this->Flash->error(__('在庫情報に保存されませんでした。もう一度試してください。'));
                 debug('else');
             }
 
             if ($this->Stocks->save($stock)) {
-                $this->Flash->success(__('The stock has been saved.'));
+                $this->Flash->success(__('在庫情報に保存されました。'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The stock could not be saved. Please, try again.'));
+            $this->Flash->error(__('在庫情報に保存されませんでした。もう一度試してください。'));
         }
         $login_user = $this->Auth->user();
         $this->set(compact('stock', 'login_user'));
@@ -119,9 +119,9 @@ class StocksController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $stock = $this->Stocks->get($id);
         if ($this->Stocks->delete($stock)) {
-            $this->Flash->success(__('The stock has been deleted.'));
+            $this->Flash->success(__('在庫情報が削除されました。'));
         } else {
-            $this->Flash->error(__('The stock could not be deleted. Please, try again.'));
+            $this->Flash->error(__('在庫情報が削除されませんでした。もう一度試してください。'));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -145,9 +145,9 @@ class StocksController extends AppController
             }
         }
         if (fclose($file)) {
-            $this->Flash->success(__('csv output is success.'));
+            $this->Flash->success(__('CSV出力が成功しました。'));
         } else {
-            $this->Flash->error(__('csv output is fail.'));
+            $this->Flash->error(__('CSV出力が失敗しました。もう一度試してください。'));
         }
         return $this->redirect(['action' => 'index']);
     }

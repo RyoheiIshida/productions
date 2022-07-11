@@ -51,11 +51,11 @@ class ProductionsController extends AppController
         if ($this->request->is('post')) {
             $production = $this->Productions->patchEntity($production, $this->request->getData());
             if ($this->Productions->save($production)) {
-                $this->Flash->success(__('The production has been saved.'));
+                $this->Flash->success(__('商品情報が保存されました。'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The production could not be saved. Please, try again.'));
+            $this->Flash->error(__('商品情報が保存されませんでした。もう一度試してください。'));
         }
         $this->set(compact('production'));
     }
@@ -75,11 +75,11 @@ class ProductionsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $production = $this->Productions->patchEntity($production, $this->request->getData());
             if ($this->Productions->save($production)) {
-                $this->Flash->success(__('The production has been saved.'));
+                $this->Flash->success(__('商品情報が保存されました。'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The production could not be saved. Please, try again.'));
+            $this->Flash->error(__('商品情報が保存されませんでした。もう一度試してください。'));
         }
         $this->set(compact('production'));
     }
@@ -96,9 +96,9 @@ class ProductionsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $production = $this->Productions->get($id);
         if ($this->Productions->delete($production)) {
-            $this->Flash->success(__('The production has been deleted.'));
+            $this->Flash->success(__('商品情報が削除されました。'));
         } else {
-            $this->Flash->error(__('The production could not be deleted. Please, try again.'));
+            $this->Flash->error(__('商品情報が削除されませんでした。もう一度試してください。'));
         }
 
         return $this->redirect(['action' => 'index']);

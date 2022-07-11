@@ -54,11 +54,11 @@ class OrdersController extends AppController
         if ($this->request->is('post')) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
             if ($this->Orders->save($order)) {
-                $this->Flash->success(__('The order has been saved.'));
+                $this->Flash->success(__('発注情報が保存されました。'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The order could not be saved. Please, try again.'));
+            $this->Flash->error(__('発注情報が保存されませんでした。もう一度試してください。'));
         }
         $stocks = $this->Orders->Stocks->find('list', ['limit' => 200]);
         $this->set(compact('order', 'stocks'));
@@ -79,11 +79,11 @@ class OrdersController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
             if ($this->Orders->save($order)) {
-                $this->Flash->success(__('The order has been saved.'));
+                $this->Flash->success(__('発注情報が保存されました。'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The order could not be saved. Please, try again.'));
+            $this->Flash->error(__('発注情報が保存されませんでした。もう一度試してください。'));
         }
         $stocks = $this->Orders->Stocks->find('list', ['limit' => 200]);
         $this->set(compact('order', 'stocks'));
@@ -101,9 +101,9 @@ class OrdersController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $order = $this->Orders->get($id);
         if ($this->Orders->delete($order)) {
-            $this->Flash->success(__('The order has been deleted.'));
+            $this->Flash->success(__('発注情報が削除されました。'));
         } else {
-            $this->Flash->error(__('The order could not be deleted. Please, try again.'));
+            $this->Flash->error(__('発注情報が削除されませんでした。もう一度試してください。'));
         }
 
         return $this->redirect(['action' => 'index']);
