@@ -54,6 +54,18 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </div>
     </nav>
     <?= $this->Flash->render() ?>
+    <nav class="large-3 medium-4 columns" >
+        <ul class="side-nav">
+            <li class="heading"><?= __('--取り扱い商品--') ?></li>
+            <li><?= $this->Html->link(__('新規商品'), ['controller' => 'productions', 'action' => 'add']) ?></li>
+            <li><?= $this->Html->link(__('商品一覧'), ['controller' => 'productions', 'action' => 'index']) ?></li>
+            <li><?= $this->Html->link(__('在庫一覧'), ['controller' => 'stocks', 'action' => 'index']) ?></li>
+            <br>
+            <li class="heading"><?= __('--発注--') ?></li>
+            <li><?= $this->Html->link(__('発注へ進む'), ['controller' => 'orders', 'action' => 'add']) ?></li>
+            <li><?= $this->Html->link(__('発注履歴'), ['controller' => 'orders', 'action' => 'index']) ?></li>
+        </ul>
+    </nav>
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>
