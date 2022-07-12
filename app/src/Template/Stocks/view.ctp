@@ -4,15 +4,6 @@
  * @var \App\Model\Entity\Stock $stock
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('編集メニュー') ?></li>
-        <li><?= $this->Html->link(__('在庫編集'), ['action' => 'edit', $stock->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('在庫削除'), ['action' => 'delete', $stock->id], ['confirm' => __('Are you sure you want to delete # {0}?', $stock->id)]) ?> </li>
-        <li><?= $this->Html->link(__('在庫一覧'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('新規商品'), ['action' => 'add']) ?> </li>
-    </ul>
-</nav>
 <div class="stocks view large-9 medium-8 columns content">
     <h3><?= h($stock->name) ?></h3>
     <table class="vertical-table">

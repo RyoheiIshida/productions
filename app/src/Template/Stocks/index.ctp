@@ -4,13 +4,6 @@
  * @var \App\Model\Entity\Stock[]|\Cake\Collection\CollectionInterface $stocks
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('編集メニュー') ?></li>
-        <li><?= $this->Html->link(__('新規商品'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('CSV出力'), ['action' => 'csvOutput']) ?></li>
-    </ul>
-</nav>
 <div class="stocks index large-9 medium-8 columns content">
     <h3><?= __('Stocks') ?></h3>
     <table cellpadding="0" cellspacing="0">

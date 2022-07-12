@@ -4,14 +4,6 @@
  * @var \App\Model\Entity\Order[]|\Cake\Collection\CollectionInterface $orders
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Order'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Stocks'), ['controller' => 'Stocks', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Stock'), ['controller' => 'Stocks', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
 <div class="orders index large-9 medium-8 columns content">
     <h3><?= __('Orders') ?></h3>
     <table cellpadding="0" cellspacing="0">
