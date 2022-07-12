@@ -10,8 +10,9 @@
         <legend><?= __('Add Order') ?></legend>
         <?php
             echo $this->Form->control('stocks_id', ['options' => $stocks]);
-            echo $this->Form->control('productions_id');
+            echo $this->Form->control('productions_id', ['options' => $productions]);
             echo $this->Form->control('order_quantity');
+            echo $this->Form->control('status');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -19,6 +19,7 @@ class OrdersFixture extends TestFixture
         'stocks_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'productions_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'order_quantity' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'status' => ['type' => 'string', 'length' => 8, 'fixed' => true, 'null' => false, 'default' => '初期ステータス', 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => 'CURRENT_TIMESTAMP', 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => 'CURRENT_TIMESTAMP', 'comment' => '', 'precision' => null],
         '_indexes' => [
@@ -49,8 +50,9 @@ class OrdersFixture extends TestFixture
                 'stocks_id' => 1,
                 'productions_id' => 1,
                 'order_quantity' => 1,
-                'created' => '2022-07-11 05:51:28',
-                'modified' => '2022-07-11 05:51:28',
+                'status' => 'Lorem ',
+                'created' => '2022-07-12 06:20:46',
+                'modified' => '2022-07-12 06:20:46',
             ],
         ];
         parent::init();

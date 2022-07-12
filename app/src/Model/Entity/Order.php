@@ -10,10 +10,12 @@ use Cake\ORM\Entity;
  * @property int $stocks_id
  * @property int $productions_id
  * @property int $order_quantity
+ * @property string $status
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\Stock $stock
+ * @property \App\Model\Entity\Production $production
  */
 class Order extends Entity
 {
@@ -30,8 +32,10 @@ class Order extends Entity
         'stocks_id' => true,
         'productions_id' => true,
         'order_quantity' => true,
+        'status' => true,
         'created' => true,
         'modified' => true,
         'stock' => true,
+        'production' => true,
     ];
 }

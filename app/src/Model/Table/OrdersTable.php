@@ -10,7 +10,7 @@ use Cake\Validation\Validator;
  * Orders Model
  *
  * @property \App\Model\Table\StocksTable&\Cake\ORM\Association\BelongsTo $Stocks
- * @property &\Cake\ORM\Association\BelongsTo $Productions
+ * @property \App\Model\Table\ProductionsTable&\Cake\ORM\Association\BelongsTo $Productions
  *
  * @method \App\Model\Entity\Order get($primaryKey, $options = [])
  * @method \App\Model\Entity\Order newEntity($data = null, array $options = [])
@@ -66,6 +66,11 @@ class OrdersTable extends Table
         $validator
             ->integer('order_quantity')
             ->notEmptyString('order_quantity');
+
+        $validator
+            ->scalar('status')
+            ->maxLength('status', 8)
+            ->notEmptyString('status');
 
         return $validator;
     }

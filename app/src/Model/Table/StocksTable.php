@@ -52,27 +52,8 @@ class StocksTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('name')
-            ->maxLength('name', 30)
-            ->requirePresence('name', 'create')
-            ->notEmptyString('name');
-
-        $validator
             ->integer('stock_quantity')
             ->notEmptyString('stock_quantity');
-
-        $validator
-            ->integer('order_quantity')
-            ->notEmptyString('order_quantity');
-
-        $validator
-            ->integer('price')
-            ->notEmptyString('price');
-
-        $validator
-            ->scalar('status')
-            ->maxLength('status', 8)
-            ->notEmptyString('status');
 
         return $validator;
     }

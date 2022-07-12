@@ -20,7 +20,7 @@ class OrdersController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Stocks'],
+            'contain' => ['Stocks', 'Productions'],
         ];
         $orders = $this->paginate($this->Orders);
 
@@ -37,7 +37,7 @@ class OrdersController extends AppController
     public function view($id = null)
     {
         $order = $this->Orders->get($id, [
-            'contain' => ['Stocks'],
+            'contain' => ['Stocks', 'Productions'],
         ]);
 
         $this->set('order', $order);
@@ -61,7 +61,8 @@ class OrdersController extends AppController
             $this->Flash->error(__('発注情報が保存されませんでした。もう一度試してください。'));
         }
         $stocks = $this->Orders->Stocks->find('list', ['limit' => 200]);
-        $this->set(compact('order', 'stocks'));
+        $productions = $this->Orders->Productions->find('list', ['limit' => 200]);
+        $this->set(compact('order', 'stocks', 'productions'));
     }
 
     /**
@@ -86,7 +87,8 @@ class OrdersController extends AppController
             $this->Flash->error(__('発注情報が保存されませんでした。もう一度試してください。'));
         }
         $stocks = $this->Orders->Stocks->find('list', ['limit' => 200]);
-        $this->set(compact('order', 'stocks'));
+        $productions = $this->Orders->Productions->find('list', ['limit' => 200]);
+        $this->set(compact('order', 'stocks', 'productions'));
     }
 
     /**

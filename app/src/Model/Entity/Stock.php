@@ -27,11 +27,7 @@ class Stock extends Entity
      * @var array
      */
     protected $_accessible = [
-        'name' => true,
         'stock_quantity' => true,
-        'order_quantity' => true,
-        'price' => true,
-        'status' => true,
         'created' => true,
         'modified' => true,
     ];
