@@ -18,7 +18,6 @@ create table stocks(
     id integer not null primary key auto_increment,
     productions_id integer not null,
     stock_quantity integer not null default 0,    -- 財語数
-    status char(8) not null default '初期ステータス',    -- ステータス
     created DATETIME default CURRENT_TIMESTAMP,
     modified DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     foreign key(productions_id) references productions(id)
@@ -28,6 +27,7 @@ create table orders(
     stocks_id integer not null,
     productions_id integer not null,
     order_quantity integer not null default 0,    -- 発注数
+    status char(8) not null default '初期ステータス',    -- ステータス
     created DATETIME default CURRENT_TIMESTAMP,
     modified DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     foreign key(stocks_id) references stocks(id),
