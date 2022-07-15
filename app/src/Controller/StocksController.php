@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Model\Entity\Stock;
 use App\Controller\AppController;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Stocks Controller
@@ -21,9 +21,9 @@ class StocksController extends AppController
      */
     public function index()
     {
-        $stocks = $this->paginate($this->Stocks);
-        $login_user = $this->Auth->user();
-        $this->set(compact('stocks', 'login_user'));
+        $stocks = $this->paginate($this->Stocks,['contain'=>['Productions']]);
+
+        $this->set(compact('stocks'));
     }
 
     /**
@@ -36,37 +36,17 @@ class StocksController extends AppController
     public function view($id = null)
     {
         $stock = $this->Stocks->get($id, [
-            'contain' => [],
+            'contain' => ['Productions'],
         ]);
-        $login_user = $this->Auth->user();
-        $this->set(compact('stock', 'login_user'));
+
+        $this->set('stock', $stock);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $stock = $this->Stocks->newEntity();
-        if ($this->request->is('post')) {
-            $stock = $this->Stocks->patchEntity($stock, $this->request->getData());
-            if ($this->Stocks->save($stock)) {
-                $this->Flash->success(__('在庫情報に保存されました。'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('在庫情報に保存されませんでした。もう一度試してください。'));
-        }
-        $login_user = $this->Auth->user();
-        $this->set(compact('stock', 'login_user'));
-    }
+    
 
     /**
      * Edit method
-     * 
-     * @info Edit method change stock['status'] and stock['order_quantity'] according to user['authority'].
+     *
      * @param string|null $id Stock id.
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
@@ -74,74 +54,67 @@ class StocksController extends AppController
     public function edit($id = null)
     {
         $stock = $this->Stocks->get($id, [
-            'contain' => [],
+            'contain' => ['Productions'],
         ]);
+        $connection = ConnectionManager::get('default');
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $stock = $this->Stocks->patchEntity($stock, $this->request->getData());
-            $authority = $this->Auth->user('authority');
+            $connection->begin(); // トランザクション開始
+            try {
+                $stock = $this->Stocks->patchEntity($stock, $this->request->getData());
+                if ($this->Stocks->save($stock)) {
+                    $connection->commit(); // 保存に成功したためコミット
+                    $this->Flash->success(__('在庫情報が保存されました。'));
 
-            #ユーザーの権限ごとに処理を分類
-            if ($authority === '在庫発注社員' and ($stock['status'] === '発注受け取り済み' or $stock['status'] === '初期ステータス')) {
-                $stock['status'] = '発注確認';
-            } elseif ($authority === '在庫発注管理者' and $stock['status'] === '発注確認') {
-                $stock['status'] = '発注状態';
-            } elseif ($authority === '在庫受注社員' and $stock['status'] === '発注状態') {
-                $stock['status'] = '発注済み';
-            } elseif ($authority === '在庫発注管理者' and $stock['status'] === '発注済み') {
-                $stock['status'] = '発注受け取り済み';
-                $stock['stock_quantity'] = $stock['stock_quantity'] + $stock['order_quantity'];
-                $stock['order_quantity'] = 0;
-            } else {
-                return $this->Flash->error(__('在庫情報に保存されませんでした。もう一度試してください。'));
-                debug('else');
+                    return $this->redirect(['action' => 'index']);
+                }
+                $connection->rollback(); // 保存に失敗したためロールバック
+                $this->Flash->error(__('在庫情報が保存されませんでした。もう一度試してください。'));
+            }catch (\Exception $e){
+                $connection->rollback();
+                $this->Flash->error(__('在庫情報が保存されませんでした。もう一度試してください。'));
+
             }
-
-            if ($this->Stocks->save($stock)) {
-                $this->Flash->success(__('在庫情報に保存されました。'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('在庫情報に保存されませんでした。もう一度試してください。'));
         }
-        $login_user = $this->Auth->user();
-        $this->set(compact('stock', 'login_user'));
+        $this->set(compact('stock'));
+        
     }
 
     /**
-     * Delete method
-     *
-     * @param string|null $id Stock id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * csvToPage
+     * @info  output orders to browser as csv.
+     * @param nothing.
+     * @return nothing.
      */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $stock = $this->Stocks->get($id);
-        if ($this->Stocks->delete($stock)) {
-            $this->Flash->success(__('在庫情報が削除されました。'));
-        } else {
-            $this->Flash->error(__('在庫情報が削除されませんでした。もう一度試してください。'));
-        }
-
-        return $this->redirect(['action' => 'index']);
+    public function csvToPage(){
+        $stocks=$this->Stocks->find('all',['contain'=>['Productions']]);
+        $this->set(compact('stocks'));
     }
-
     /**
-     * csvOutput method
+     * csvToFile method
      * @info make csv file.
      * @param nothing.
      * @return nothing.
      */
-    public function csvOutput()
+    public function csvToFile()
     {
-        date_default_timezone_set ('Asia/Tokyo'); 
-        $file = fopen(date('Y-m-d_Hi').'.csv', 'w');
+
+        date_default_timezone_set('Asia/Tokyo');
+        $file = fopen(date('Y-m-d_Hi') . '.csv', 'w');
         if ($file) {
-            fputcsv($file, ['id', '名称', '在庫数', '発注数', '価格', 'ステータス', '作成日', '変更日']);
-            $data = $this->Stocks->find('all');
+            fputcsv($file, ['id', '名称', '価格', '在庫数', '作成日', '変更日']);
+            $data = $this->Stocks->find('all', ['contain' => ['Productions']]);
             foreach ($data as $row) {
-                fputcsv($file, [$row['id'], $row['name'], $row['stock_quantity'], $row['order_quantity'], $row['price'], $row['status'], $row['created'], $row['modified']]);
+                fputcsv(
+                    $file,
+                    [
+                        $row['id'],
+                        $row['production']['name'],
+                        $row['production']['price'],
+                        $row['stock_quantity'],
+                        $row['created'],
+                        $row['modified']
+                    ]
+                );
             }
         }
         if (fclose($file)) {
@@ -155,8 +128,11 @@ class StocksController extends AppController
     public function isAuthorized($user)
     {
         $action = $this->request->getParam('action');
-        // add アクションは、常にログインしているユーザーに許可されます。
-        if (in_array($action, ['add', 'csvOutput'])) {
+        if (in_array($action, ['csvToFile','csvToPage'])) {
+            return true;
+        }
+        if (in_array($action, ['edit'])) {
+            if($this->Auth->user('authority')==='在庫発注管理者')
             return true;
         }
 
@@ -166,17 +142,5 @@ class StocksController extends AppController
             return false;
         }
 
-        $authority = $this->Auth->user([('authority')]);
-        $status = $this->Stocks->get($this->request->getParam('pass.0'))['status'];
-
-        if ($authority === '在庫発注社員' and ($status === '発注受け取り済み' or $status === '初期ステータス')) {
-            return true;
-        } elseif ($authority === '在庫発注管理者' and $status === '発注確認') {
-            return true;
-        } elseif ($authority === '在庫受注社員' and $status === '発注状態') {
-            return true;
-        } elseif ($authority === '在庫発注管理者' and $status === '発注済み') {
-            return true;
-        }
     }
 }
