@@ -41,8 +41,8 @@ class ProductionsFixture extends TestFixture
                 'id' => 1,
                 'name' => 'Lorem ipsum dolor sit amet',
                 'price' => 1,
-                'created' => '2022-07-11 05:51:58',
-                'modified' => '2022-07-11 05:51:58',
+                'created' => '2022-07-12 09:20:32',
+                'modified' => '2022-07-12 09:20:32',
             ],
         ];
         parent::init();

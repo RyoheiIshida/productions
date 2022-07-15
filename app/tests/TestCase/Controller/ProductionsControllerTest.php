@@ -21,6 +21,8 @@ class ProductionsControllerTest extends TestCase
      */
     public $fixtures = [
         'app.Productions',
+        'app.Stocks',
+        'app.Orders',
     ];
 
     /**

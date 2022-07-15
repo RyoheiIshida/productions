@@ -51,8 +51,8 @@ class OrdersFixture extends TestFixture
                 'productions_id' => 1,
                 'order_quantity' => 1,
                 'status' => 'Lorem ',
-                'created' => '2022-07-12 06:20:46',
-                'modified' => '2022-07-12 06:20:46',
+                'created' => '2022-07-12 09:21:12',
+                'modified' => '2022-07-12 09:21:12',
             ],
         ];
         parent::init();
