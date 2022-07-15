@@ -5,16 +5,16 @@
  */
 ?>
 <div class="productions index large-9 medium-8 columns content">
-    <h3><?= __('Productions') ?></h3>
+    <h3><?= __('商品一覧') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('price') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('id','ID') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('name','名称') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('price','価格') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created','作成日') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('modified','変更日') ?></th>
+                <th scope="col" class="actions"><?= __('操作メニュー') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -26,9 +26,9 @@
                 <td><?= h($production->created) ?></td>
                 <td><?= h($production->modified) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $production->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $production->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $production->id], ['confirm' => __('Are you sure you want to delete # {0}?', $production->id)]) ?>
+                    <?= $this->Html->link(__('閲覧'), ['action' => 'view', $production->id]) ?>
+                    <?= $this->Html->link(__('変更'), ['action' => 'edit', $production->id]) ?>
+                    <?= $this->Form->postLink(__('削除'), ['action' => 'delete', $production->id], ['confirm' => __('本当に削除しますか？ # {0}?', $production->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
