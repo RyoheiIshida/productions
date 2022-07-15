@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Stocks Model
  *
+ * @property \App\Model\Table\ProductionsTable&\Cake\ORM\Association\BelongsTo $Productions
+ *
  * @method \App\Model\Entity\Stock get($primaryKey, $options = [])
  * @method \App\Model\Entity\Stock newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Stock[] newEntities(array $data, array $options = [])
@@ -37,6 +39,15 @@ class StocksTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Productions', [
+            'foreignKey' => 'productions_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->hasMany('Orders', [
+            'foreignKey' => 'stocks_id',
+            'joinType' => 'INNER',
+        ]);
     }
 
     /**
@@ -56,5 +67,19 @@ class StocksTable extends Table
             ->notEmptyString('stock_quantity');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['productions_id'], 'Productions'));
+
+        return $rules;
     }
 }

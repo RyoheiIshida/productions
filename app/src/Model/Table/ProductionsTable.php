@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -37,6 +38,17 @@ class ProductionsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->hasOne('Stocks', [
+            'foreignKey' => 'productions_id',
+            'joinType' => 'INNER',
+            'dependent' => true
+        ]);
+        $this->hasMany('Orders', [
+            'foreignKey' => 'productions_id',
+            'joinType' => 'INNER',
+            'dependent' => true
+        ]);
     }
 
     /**

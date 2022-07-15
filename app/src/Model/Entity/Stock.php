@@ -7,13 +7,12 @@ use Cake\ORM\Entity;
  * Stock Entity
  *
  * @property int $id
- * @property string $name
+ * @property int $productions_id
  * @property int $stock_quantity
- * @property int $order_quantity
- * @property int $price
- * @property string $status
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ *
+ * @property \App\Model\Entity\Production $production
  */
 class Stock extends Entity
 {
@@ -27,8 +26,10 @@ class Stock extends Entity
      * @var array
      */
     protected $_accessible = [
+        'productions_id' => true,
         'stock_quantity' => true,
         'created' => true,
         'modified' => true,
+        'production' => true,
     ];
 }

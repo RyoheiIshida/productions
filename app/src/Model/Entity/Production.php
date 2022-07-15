@@ -11,6 +11,9 @@ use Cake\ORM\Entity;
  * @property int $price
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ *
+ * @property \App\Model\Entity\Stock $stock
+ * @property \App\Model\Entity\Order[] $orders
  */
 class Production extends Entity
 {
@@ -28,5 +31,7 @@ class Production extends Entity
         'price' => true,
         'created' => true,
         'modified' => true,
+        'stock' => true,
+        'orders' => true,
     ];
 }
