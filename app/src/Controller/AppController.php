@@ -71,6 +71,8 @@ class AppController extends Controller
         // 動作するようにします。また、読み取り専用のアクションを有効にします。
         $this->Auth->allow(['display', 'view', 'index']);
 
+        $this->Auth->config('authError','あなたはこのページにアクセスする権限がありません。');
+
         /*
          * Enable the following component for recommended CakePHP security settings.
          * see https://book.cakephp.org/3.0/en/controllers/components/security.html
