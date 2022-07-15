@@ -21,8 +21,8 @@ class UsersController extends AppController
     public function index()
     {
         $users = $this->paginate($this->Users);
-        $login_user=$this->Auth->user();
-        $this->set(compact('users','login_user'));
+        $login_user = $this->Auth->user();
+        $this->set(compact('users', 'login_user'));
     }
 
     /**
@@ -59,7 +59,7 @@ class UsersController extends AppController
             $this->Flash->error(__('ユーザー情報が保存できませんでした。もう一度試してください。'));
         }
         $login_user = $this->Auth->user();
-        $this->set(compact('user','login_user'));
+        $this->set(compact('user', 'login_user'));
     }
 
     /**
@@ -84,7 +84,7 @@ class UsersController extends AppController
             $this->Flash->error(__('ユーザー情報は保存されませんでした。もう一度試してください。'));
         }
         $login_user = $this->Auth->user();
-        $this->set(compact('user','login_user'));
+        $this->set(compact('user', 'login_user'));
     }
 
     /**
@@ -106,11 +106,16 @@ class UsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-
+    /**
+     * login method
+     * @info login method.
+     * @param nothing.
+     * @return redirect
+     */
     public function login()
     {
-        $login_user=$this->Auth->user();
-        if ($login_user){
+        $login_user = $this->Auth->user();
+        if ($login_user) {
             $this->Flash->error('すでにログイン済みです。');
             return $this->redirect($this->Auth->redirectUrl());
         }
@@ -124,6 +129,9 @@ class UsersController extends AppController
         }
     }
 
+    /**
+     * initialize method
+     */
     public function initialize()
     {
         parent::initialize();
@@ -137,11 +145,14 @@ class UsersController extends AppController
         return $this->redirect($this->Auth->logout());
     }
 
-    public function isAuthorized($user){
+    /**
+     * isAuthorized method
+     */
+    public function isAuthorized($user)
+    {
         $action = $this->request->getParam('action');
         if (in_array($action, ['index'])) {
             return true;
         }
-
     }
 }
