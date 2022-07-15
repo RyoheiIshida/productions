@@ -42,7 +42,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-
+                <?php $login_user = $this->request->session()->read('Auth.User')?>
                 <?php if(empty($login_user['email'])): ?>
                     <li><a href="/users/login">ログイン</a></li>
                     <li><a href="/users/add">ユーザー登録</a></li>
@@ -62,8 +62,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <li><?= $this->Html->link(__('在庫一覧'), ['controller' => 'stocks', 'action' => 'index']) ?></li>
             <br>
             <li class="heading"><?= __('--発注--') ?></li>
-            <li><?= $this->Html->link(__('発注へ進む'), ['controller' => 'orders', 'action' => 'add']) ?></li>
+            <li><?= $this->Html->link(__('新規発注'), ['controller' => 'orders', 'action' => 'add']) ?></li>
             <li><?= $this->Html->link(__('発注履歴'), ['controller' => 'orders', 'action' => 'index']) ?></li>
+            <br>
+            <li class="heading"><?= __('--CSV出力--') ?></li>
+            <li><?= $this->Html->link(__('ページへ出力'), ['controller' => 'stocks', 'action' => 'csvToPage']) ?></li>
+            <li><?= $this->Html->link(__('ファイルダウンロード'), ['controller' => 'stocks', 'action' => 'csvToFile']) ?></li>
         </ul>
     </nav>
     <div class="container clearfix">
