@@ -65,7 +65,15 @@ class OrdersTable extends Table
 
         $validator
             ->integer('order_quantity')
-            ->notEmptyString('order_quantity');
+            ->notEmptyString('order_quantity')
+            ->add(
+                'order_quantity',
+                'comparison',
+                [
+                    'rule' => ['comparison', '>', 0],
+                    'message' => '発注数は1以上でなければなりません。'
+                ]
+            );
 
         $validator
             ->scalar('status')
