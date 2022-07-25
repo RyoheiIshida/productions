@@ -47,6 +47,7 @@ class StocksTable extends Table
         $this->hasMany('Orders', [
             'foreignKey' => 'stocks_id',
             'joinType' => 'INNER',
+            'dependent'=>true,
         ]);
     }
 
