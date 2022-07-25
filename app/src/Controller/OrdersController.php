@@ -77,7 +77,7 @@ class OrdersController extends AppController
                     return $this->redirect(['action' => 'index']);
                 }
                 $connection->rollback(); // 保存に失敗したためロールバック
-                $this->Flash->error(__('発注情報が保存されました。'));
+                $this->Flash->error(__('発注情報が保存されませんでした。もう一度試してください。'));
             } catch (\Exception $e) {
                 $connection->rollback(); // 保存に失敗したためロールバック
                 $this->Flash->error(__('発注情報が保存されませんでした。もう一度試してください。'));
