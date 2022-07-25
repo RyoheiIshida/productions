@@ -151,15 +151,18 @@ class StocksController extends AppController
         if (in_array($action, ['csvToFile','csvToPage'])) {
             return true;
         }
-        if (in_array($action, ['edit'])) {
-            if($this->Auth->user('authority')==='在庫発注管理者')
-            return true;
-        }
-
         // 他のすべてのアクションにはスラッグが必要です。
         $slug = $this->request->getParam('pass.0');
         if (!$slug) {
             return false;
+        }
+        if (in_array($action, ['edit'])) {
+            if($this->Auth->user('authority')==='在庫発注管理者')
+            return true;
+        }
+        if (in_array($action, ['delete'])) {
+            if($this->Auth->user('authority')==='在庫発注管理者')
+            return true;
         }
 
     }
