@@ -40,7 +40,7 @@ class ProductionsController extends AppController
             'contain' => ['Stocks', 'Orders'],
         ]);
 
-        $this->set('production', $production);
+        $this->set(compact('production'));
     }
 
     /**

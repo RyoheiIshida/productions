@@ -39,7 +39,7 @@ class StocksController extends AppController
             'contain' => ['Productions'],
         ]);
 
-        $this->set('stock', $stock);
+        $this->set(compact('stock'));
     }
 
     

@@ -42,7 +42,7 @@ class OrdersController extends AppController
             'contain' => ['Stocks', 'Productions'],
         ]);
 
-        $this->set('order', $order);
+        $this->set(compact('order'));
     }
 
     /**
