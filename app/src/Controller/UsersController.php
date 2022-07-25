@@ -150,5 +150,16 @@ class UsersController extends AppController
         if (in_array($action, ['index'])) {
             return true;
         }
+        if (in_array($action, ['delete'])) {
+            if ($user['authority'] === '在庫発注管理者') {
+                return true;
+            }
+        }
+        
+        if (in_array($action, ['edit'])) {
+            if ($user['id']===(INT)$this->request->getParam('pass.0')){
+                return true;
+            }
+        }
     }
 }
