@@ -78,6 +78,26 @@ class StocksController extends AppController
         $this->set(compact('stock'));
         
     }
+    /**
+     * Delete method
+     *
+     * @param string|null $id Order id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function delete($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $stock = $this->Stocks->get($id);
+        if ($this->Stocks->delete($stock)) {
+            $this->Flash->success(__('在庫情報が削除されました。'));
+        } else {
+            $this->Flash->error(__('在庫情報が削除されませんでした。もう一度試してください。'));
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
+
 
     /**
      * csvToPage
