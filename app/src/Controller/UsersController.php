@@ -99,8 +99,8 @@ class UsersController extends AppController
         } else {
             $this->Flash->error(__('ユーザー情報が削除できませんでした。もう一度試してください。'));
         }
-
-        return $this->redirect(['action' => 'index']);
+        $this->Auth->logout();
+        return $this->redirect(['controller'=>'productions','action' => 'index']);
     }
     /**
      * login method
@@ -150,13 +150,8 @@ class UsersController extends AppController
         if (in_array($action, ['index'])) {
             return true;
         }
-        if (in_array($action, ['delete'])) {
-            if ($user['authority'] === '在庫発注管理者') {
-                return true;
-            }
-        }
         
-        if (in_array($action, ['edit'])) {
+        if (in_array($action, ['edit','delete'])) {
             if ($user['id']===(INT)$this->request->getParam('pass.0')){
                 return true;
             }
