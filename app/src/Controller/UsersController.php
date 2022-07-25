@@ -52,7 +52,7 @@ class UsersController extends AppController
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('ユーザー情報を保存しました。'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'login']);
             }
             $this->Flash->error(__('ユーザー情報が保存できませんでした。もう一度試してください。'));
         }
