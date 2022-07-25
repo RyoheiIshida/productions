@@ -65,7 +65,7 @@ class ProductionsTable extends Table
 
         $validator
             ->scalar('name')
-            ->maxLength('name', 30)
+            ->maxLength('name', 30, '文字数超過しています。')
             ->requirePresence('name', 'create')
             ->notEmptyString('name');
 
