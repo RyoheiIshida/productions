@@ -28,6 +28,7 @@
                 <td class="actions">
                     <?= $this->Html->link(__('閲覧'), ['action' => 'view', $stock->id]) ?>
                     <?= $this->Html->link(__('変更'), ['action' => 'edit', $stock->id]) ?>
+                    <?= $this->Form->postlink(__('削除'), ['action' => 'delete', $stock->id], ['confirm' => __('本当に削除しますか？ # {0}?', $stock->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
