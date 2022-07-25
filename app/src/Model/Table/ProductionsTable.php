@@ -71,7 +71,15 @@ class ProductionsTable extends Table
 
         $validator
             ->integer('price')
-            ->notEmptyString('price');
+            ->notEmptyString('price')
+            ->add(
+                'price',
+                'comparison',
+                [
+                    'rule' => ['comparison', '>', 0],
+                    'message' => '価格は1以上を入力してください。'
+                ]
+            );
 
         return $validator;
     }
