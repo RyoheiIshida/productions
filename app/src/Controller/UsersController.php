@@ -21,8 +21,7 @@ class UsersController extends AppController
     public function index()
     {
         $users = $this->paginate($this->Users);
-        $login_user = $this->Auth->user();
-        $this->set(compact('users', 'login_user'));
+        $this->set(compact('users'));
     }
 
     /**
@@ -37,8 +36,7 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => [],
         ]);
-        $login_user = $this->Auth->user();
-        $this->set(compact('user', 'login_user'));
+        $this->set(compact('user'));
     }
 
     /**
@@ -58,8 +56,7 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('ユーザー情報が保存できませんでした。もう一度試してください。'));
         }
-        $login_user = $this->Auth->user();
-        $this->set(compact('user', 'login_user'));
+        $this->set(compact('user'));
     }
 
     /**
@@ -83,8 +80,7 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('ユーザー情報は保存されませんでした。もう一度試してください。'));
         }
-        $login_user = $this->Auth->user();
-        $this->set(compact('user', 'login_user'));
+        $this->set(compact('user'));
     }
 
     /**
