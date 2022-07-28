@@ -71,12 +71,15 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => [],
         ]);
+        #debug($this->Auth->user('authority'));
+        #debug($this->request->getdata());
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('ユーザー情報が保存されました。.'));
-
-                return $this->redirect(['action' => 'index']);
+            if ($this->Users->changeableAuthority($this->Auth->user('authority'), $user)) {
+                if ($this->Users->save($user)) {
+                    $this->Flash->success(__('ユーザー情報が保存されました。.'));
+                    return $this->redirect(['action' => 'index']);
+                }
             }
             $this->Flash->error(__('ユーザー情報は保存されませんでした。もう一度試してください。'));
         }
@@ -150,9 +153,14 @@ class UsersController extends AppController
         if (in_array($action, ['index'])) {
             return true;
         }
-        
-        if (in_array($action, ['edit','delete'])) {
-            if ($user['id']===(INT)$this->request->getParam('pass.0')){
+
+        if (in_array($action, ['edit'])) {
+            if ($user['authority'] === '在庫発注管理者') {
+                return true;
+            }
+        }
+        if (in_array($action, ['edit', 'delete'])) {
+            if ($user['id'] === (int) $this->request->getParam('pass.0')) {
                 return true;
             }
         }

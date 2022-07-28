@@ -84,4 +84,18 @@ class UsersTable extends Table
 
         return $rules;
     }
+
+    /**
+     * wheather allow to change user's authority or not.
+     * @param string $authority logined user's authority.
+     * @param $user changed user entity.
+     * @return boolean
+     */
+    public function changeableAuthority($authority,$user){
+        if ($authority==='在庫発注管理者' or !$user->dirty('authority')){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
