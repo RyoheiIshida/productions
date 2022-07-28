@@ -66,7 +66,8 @@ class UsersTable extends Table
             ->scalar('authority')
             ->maxLength('authority', 255)
             ->requirePresence('authority', 'create')
-            ->notEmptyString('authority');
+            ->notEmptyString('authority')
+            ->inList('authority',['在庫発注社員','在庫発注管理者','在庫受注社員'],'権限が不正な値です。');
 
         return $validator;
     }

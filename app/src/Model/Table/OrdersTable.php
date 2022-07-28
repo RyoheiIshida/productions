@@ -78,7 +78,8 @@ class OrdersTable extends Table
         $validator
             ->scalar('status')
             ->maxLength('status', 8)
-            ->notEmptyString('status');
+            ->notEmptyString('status')
+            ->inList('status', ['発注確認', '発注状態', '発注済み', '発注受け取り済み'], 'ステータスの値が不正です。');
 
         return $validator;
     }
