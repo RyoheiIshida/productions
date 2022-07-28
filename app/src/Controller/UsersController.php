@@ -103,7 +103,7 @@ class UsersController extends AppController
             $this->Flash->error(__('ユーザー情報が削除できませんでした。もう一度試してください。'));
         }
         $this->Auth->logout();
-        return $this->redirect(['controller'=>'productions','action' => 'index']);
+        return $this->redirect(['controller' => 'productions', 'action' => 'index']);
     }
     /**
      * login method

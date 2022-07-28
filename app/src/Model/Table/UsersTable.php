@@ -52,13 +52,13 @@ class UsersTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->email('email',false,'メールアドレスとして無効な値です。')
+            ->email('email', false, 'メールアドレスとして無効な値です。')
             ->requirePresence('email', 'create')
             ->notEmptyString('email');
 
         $validator
             ->scalar('password')
-            ->maxLength('password', 255,'文字数超過です。')
+            ->maxLength('password', 255, '文字数超過です。')
             ->requirePresence('password', 'create')
             ->notEmptyString('password');
 

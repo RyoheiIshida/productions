@@ -68,6 +68,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <li class="heading"><?= __('--CSV出力--') ?></li>
             <li><?= $this->Html->link(__('ページへ出力'), ['controller' => 'stocks', 'action' => 'csvToPage']) ?></li>
             <li><?= $this->Html->link(__('ファイルダウンロード'), ['controller' => 'stocks', 'action' => 'csvToFile']) ?></li>
+            <br>
+            <li class="heading"><?= __('--ユーザー管理--') ?></li>
+            <li><?= $this->Html->link(__('ユーザー一覧'), ['controller' => 'users', 'action' => 'index']) ?></li>
         </ul>
     </nav>
     <div class="container clearfix">
